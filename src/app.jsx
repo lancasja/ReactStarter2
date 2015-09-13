@@ -2,18 +2,10 @@
   -- Main --
   * Top Level - Renders all children
   * Collect data from Firebase
-  
-  Header
-    Add new todos
-    
-  List
-    List Items
 */
 var React = require('react');
 var Firebase = require('firebase');
 var ReactFire = require('reactfire');
-
-var Header = require('./header');
 
 var fireBaseRootUrl = 'https://jlreacttodo.firebaseio.com/';
 
@@ -26,21 +18,36 @@ var App = React.createClass({
       */
       // Initialize Firebase
       // bindAsObject() comes from ReactFire
-      this.bindAsObject(new Firebase(fireBaseRootUrl + 'items/'), 'items')
+      this.fb = new Firebase(fireBaseRootUrl + 'items/');
+      this.bindAsObject(this.fb, 'items')
+      // Run handler after data has been loaded
+      this.fb.on('value', this.handleDataLoaded);
+  },
+  
+  getInitialState: function() {
+    return {
+      items: {},
+      loaded: false
+    }
   },
   
   render: function() {
-    console.log(this.state);
     
     return (
-      <div className="row panel panel-default">
-        <div className="col-md-8 col-md-ofset-2">
-          <h2 className="text-center">React Todo</h2>
-          
-          <Header itemsStore={this.firebaseRefs.items} />
+      <div className="wrapper">
+        <h2 className="text-center">React Starter</h2>
+        
+        <div className={'content ' + (this.state.loaded ? 'loaded' : '')}>
+          <div className="text-center">With Firebase & Live Reload</div>
         </div>
       </div>
     );
+  },
+  
+  handleDataLoaded: function() {
+    this.setState({
+      loaded: true
+    });
   }
 });
 

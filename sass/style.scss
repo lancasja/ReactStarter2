@@ -4,3 +4,11 @@ html, body {
   height: 100vh;
 }
 
+.content {
+  opacity: 0;
+  transition: opacity 1s ease-in;
+}
+
+.loaded {
+  opacity: 1;
+}
