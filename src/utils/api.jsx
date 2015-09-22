@@ -1,16 +1,18 @@
 /*
-  Point of contact with imgur API
+  /src/utils/api.jsx
+  Point of contact with the outside world
 */
 
 var Fetch = require('whatwg-fetch');
-var rootUrl = 'https://api.imgur.com/3/';
-var apiKey = '986b5ea16237c12';
+var baseUrl = 'https://api.spotify.com/v1/';
+var apiKey = '';
 
-module.exports = window.Api = {
+module.exports = {
   get: function(url) {
-    return fetch(rootUrl + url, {
+    return fetch(baseUrl + url, {
       headers: {
-        'AUTHORIZATION': 'Client-ID ' + apiKey
+        'Accept': 'application/json',
+        'Authorization': 'Bearer ' + apiKey
       }
     })
     .then(function(response) {

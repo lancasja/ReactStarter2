@@ -338,3 +338,10 @@ body {
 
 h1 {
   font-weight: 100; }
+
+.content {
+  opacity: 0;
+  transition: opacity 1s ease-in; }
+
+.loaded {
+  opacity: 1; }
