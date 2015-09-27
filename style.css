@@ -1,6 +1,7 @@
 /**
  * Flex Grid -
  * Version: 0.2.1
+ * https://github.com/matthewsimo/scss-flex-grid
  *
  * Simple grid built with flex box and sass.
  *
@@ -339,9 +340,18 @@ body {
 h1 {
   font-weight: 100; }
 
+h1, h2 {
+  width: 100%; }
+
 .content {
   opacity: 0;
   transition: opacity 1s ease-in; }
 
 .loaded {
   opacity: 1; }
+
+.text-center {
+  text-align: center; }
+
+.login-wrapper {
+  text-align: center; }
